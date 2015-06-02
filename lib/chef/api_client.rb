@@ -55,10 +55,12 @@ class Chef
       @chef_rest_v1 ||= get_versioned_rest_object(Chef::Config[:chef_server_url], "1")
     end
 
+    # will default to the current version
     def http_api
       @http_api ||= Chef::REST.new(Chef::Config[:chef_server_url])
     end
 
+    # will default to the current version
     def self.http_api
       Chef::REST.new(Chef::Config[:chef_server_url])
     end
@@ -322,11 +324,6 @@ class Chef
     def to_s
       "client[#{@name}]"
     end
-
-    # def inspect
-    #   "Chef::ApiClient name:'#{name}' admin:'#{admin.inspect}' validator:'#{validator}' " +
-    #   "public_key:'#{public_key}' private_key:'#{private_key}'"
-    # end
 
   end
 end

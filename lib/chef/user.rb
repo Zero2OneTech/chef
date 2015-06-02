@@ -132,7 +132,9 @@ class Chef
       Chef::JSONCompat.to_json(to_hash, *a)
     end
 
+    # Supports OSC 11
     def destroy
+      # will default to the current version
       Chef::REST.new(Chef::Config[:chef_server_url]).delete("users/#{@username}")
     end
 
@@ -299,7 +301,9 @@ class Chef
       end
     end
 
+    # Supports OSC 11
     def self.load(username)
+      # will default to the current version
       response = Chef::REST.new(Chef::Config[:chef_server_url]).get("users/#{username}")
       Chef::User.from_hash(response)
     end
